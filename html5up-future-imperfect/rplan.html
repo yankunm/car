@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>CarRole</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+            .parallel-sections {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                gap: 20px; /* Adjust the gap between the sections */
+            }
+
+        .weekly-popular, .top-media {
+            flex: 1;
+           
+        }
+
+        @media (max-width: 768px) {
+            .parallel-sections {
+                flex-direction: column;
+            }
+        }
+
+        .tab-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .tab-list li {
+            cursor: pointer;
+            padding: 10px 20px;
+            border: 1px solid #ccc;
+            margin-right: 5px;
+        }
+        .tab-list li.active {
+            background-color: #ffcc00;
+            color: white;
+            border-color: #ffcc00;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+    </style>
+</head>
+<body class="is-preload">
+    <div id="wrapper">
+        <header id="header">
+            <h1><a href="index.html">CarRole</a></h1>
+            <nav class="links">
+                <ul>
+                    <li><a href="vehicle.html">Vehicle</a></li>
+                    <li><a href="comparison.html">Comparison</a></li>
+                    <li><a href="community.html">Community</a></li>
+                    <li><a href="rankings.html">Rankings</a></li>
+                    <li><a href="rplan.html">RPlan</a></li>
+                </ul>
+            </nav>
+            <nav class="main">
+                <ul>
+                    <li class="search">
+                        <a class="fa-search" href="#search">Search</a>
+                        <form id="search" method="get" action="#">
+                            <input type="text" name="query" placeholder="Search" />
+                        </form>
+                    </li>
+                    <li class="menu">
+                        <a class="fa-bars" href="#menu">Menu</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div id="main">
+            <section id="car-listings" class="post">
+                <header class="major">
+                    <h2>R Plan - Task Guide</h2>
+                </header>
+                <section class="parallel-sections">
+                    <div class="weekly-popular">
+                        <h2>Weekly Popular</h2>
+                        <!-- Content for Weekly Popular -->
+                    </div>
+                    <div class="top-media">
+                        <h2>Top Media</h2>
+                        <!-- Content for Top Media -->
+                    </div>
+                </section>
+                <ul class="tab-list">
+                    <li class="tab active" onclick="openTab(event, 'new-car')">New Car</li>
+                    <li class="tab" onclick="openTab(event, 'used-car')">Used Car</li>
+                </ul>
+    
+                <!-- Tab Content -->
+                <div id="new-car" class="tab-content active">
+                    <h2>New Cars</h2>
+                    <section>
+                        <div class="section">
+                            <div class="car-listing">
+                                <img src="images/Hoda.png" alt="Car">
+                                <div class="car-info">
+                                    <h4>Hoda - Video Posts</h4>
+                                    <p class="price">$1037 R points</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div id="used-car" class="tab-content">
+                    <h2>Used Cars</h2>
+                    <!-- Content for Used Cars -->
+                
+        </div>
+        <section id="sidebar">
+        </section>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        // Simple tab functionality
+        function openTab(evt, tabName) {
+            // Get all elements with class="tab-content" and hide them
+            var tabcontent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tab-list li" and remove the class "active"
+            var tablinks = document.getElementsByClassName("tab-list")[0].getElementsByTagName("li");
+            for (var i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</body>
+</html>

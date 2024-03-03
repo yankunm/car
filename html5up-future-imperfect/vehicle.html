@@ -6,14 +6,38 @@
     <title>CarRole - Vehicle</title>
     <link rel="stylesheet" href="assets/css/main.css" />
     <style>
-        /* Your existing styles */
+
+        .car-type-icons {
+            display: flex; /* This will display the child elements (car-image-container divs) in a row */
+            justify-content: center; /* This will horizontally center the images in the container */
+            align-items: center; /* This will vertically center the images in the container */
+            gap: 10px; /* This will create a gap between the images */
+        }
+        .car-image-container {
+            width: 100px; /* Fixed width */
+            height: auto; /* Fixed height */
+            display: flex; /* Use flexbox to center the image */
+            align-items: center; /* Center image vertically */
+            justify-content: center; /* Censter image horizontally */
+            overflow: hidden; /* Hide overflow to maintain container size */
+            flex-direction: column; /* Stacks items vertically */
+            /* margin: 0 10px; */
+        }
+        
         .car-image {
-            width: 150px; /* Adjust to a fixed width as needed */
-            height: auto; /* Maintain aspect ratio */
-            margin: 0 auto; /* Center the image */
+            max-width: 50%; /* Maximum width is the size of the container */
+            max-height: 50%; /* Maximum height is the size of the container */
+            display: block; /* Remove any extra space below the image */
+            object-fit: contain; /* Make sure the image is contained within the container without distortion */
         }
 
-        /* Additional styles */
+        .car-tag {
+            margin-top: 4px; /* Space between image and tag */
+            font-size: 14px; /* Text size, adjust as needed */
+            text-align: center; /* Ensures the text is centered */
+        }
+
+
         .search-section h2 {
             padding-top: 20px;
             border-top: 2px dashed #ccc; /* Dashed line above section titles */
@@ -42,8 +66,7 @@
             cursor: pointer; /* Cursor appears as a pointer */
         }
 
-        /* You can add equivalent styles for Firefox, Edge, etc. */
-        /* Example for Firefox */
+
         input[type="range"]::-moz-range-thumb {
             width: 25px; /* Width of the thumb */
             height: 25px; /* Height of the thumb */
@@ -55,7 +78,6 @@
             width: 100%; /* Full width of its container */
             padding: 10px 0; /* Padding for a larger button */
             margin-top: 10px; /* Margin above the button */
-            /* Additional button styles as required */
         }
     </style>
 </head>
@@ -73,79 +95,126 @@
                     <li><a href="comparison.html">Comparison</a></li>
                     <li><a href="community.html">Community</a></li>
                     <li><a href="rankings.html">Rankings</a></li>
+                    <li><a href="rplan.html">RPlan</a></li>
                 </ul>
             </nav>
-            <!-- Your existing header content, such as search form, goes here -->
         </header>
 
         <!-- Main -->
         <div id="main">
             <section class="search-section">
-                <!-- <div class="search-group"> -->
                     <h2>Search by Type</h2>
                     <div class="car-type-icons">
-                        <!-- Use your actual image paths for the vehicle type icons -->
-                        <img src="images/electric-car.png" alt="EV" class="car-image">
-                        <img src="images/sedan.png" alt="Sedan" class="car-image">
-                        <!-- Add more images for each car type -->
+                        <div class="car-image-container">
+                            <img src="images/ev.png" alt="EV" class="car-image">
+                            <span class="car-tag">EV</span>
+                        </div>
+                        <div class="car-image-container">
+                            <img src="images/sedan.png" alt="Sedan" class="car-image">
+                            <span class="car-tag">Sedan</span>
+                        </div>
+                        <div class="car-image-container">
+                            <img src="images/suv.png" alt="SUV" class="car-image">
+                            <span class="car-tag">SUV</span>
+                        </div>
+                        <div class="car-image-container">
+                            <img src="images/truck.png" alt="Truck" class="car-image">
+                            <span class="car-tag">Truck</span>      
+                        </div>
+                        <div class="car-image-container">
+                            <img src="images/convertible.png" alt="convertible" class="car-image">
+                            <span class="car-tag">Convertible</span>
+                        </div>
+                        <div class="car-image-container">
+                            <img src="images/hatchback.png" alt="hatchback" class="car-image">
+                            <span class="car-tag">Hatchback</span>
+                        </div>
+                        <div class="car-image-container">
+                            <img src="images/van.png" alt="van" class="car-image">
+                            <span class="car-tag">Van</span>
+                        </div>
+                        <div class="car-image-container">
+                            <img src="images/wagon.png" alt="wagon" class="car-image">
+                            <span class="car-tag">Wagon</span>
+                        </div>
                     </div>
-                <!-- </div> -->
 
-                <!-- <div class="search-group"> -->
                     <h2>Search by Brand</h2>
                     <div>
                         <select class="dropdown">
                             <option>All Makers</option>
-                            <!-- Add more options here -->
+                            <option value="toyota">Toyota</option>
+                            <option value="ford">Ford</option>
+                            <option value="honda">Honda</option>
+                            <option value="chevrolet">Chevrolet</option>
+
                         </select>
                         <select class="dropdown">
                             <option>All Models</option>
-                            <!-- Add more options here -->
+                            <option value="camry">Camry</option>
+                            <option value="civic">Civic</option>
+                            <option value="silverado">Silverado</option>
+                            <option value="accord">Accord</option>
                         </select>
                         <select class="dropdown">
                             <option>Trim</option>
-                            <!-- Add more options here -->
+                            <option value="base">Base</option>
+                            <option value="sport">Sport</option>
+                            <option value="lx">LX</option>
+                            <option value="ex">EX</option>
                         </select>
                     </div>
-                <!-- </div> -->
 
-                <!-- <div class="search-group"> -->
                     <h2>Search by Preference</h2>
                     <div class="search-preferences">
                         <div>
-                            <label for="price-from">Price</label>
-                            <input type="number" id="price-from" placeholder="From">
-                            <input type="number" id="price-to" placeholder="To">
+                            <label for="price-from">Price ($)</label>
+                            <input type="number" id="price-from" placeholder="From" min="0" value="0" oninput="updatePriceRange()"> to
+        <input type="number" id="price-to" placeholder="To" min="0" value="100000" oninput="updatePriceRange()">
                         </div>
                         
                         <div>
-                            <label for="mileage">Mileage</label>
-                            <input type="range" id="mileage" name="mileage">
+                            <label for="mileage">Mileage (miles)</label>
+                            <input type="range" id="mileage" name="mileage" min="0" max="100000" value="0" oninput="updateMileageDisplay()">
+                            <span id="mileageDisplay">0 miles</span>
+                            
                         </div>
                         
                         <button class="search-button">Search</button>
                     </div>
-                <!-- </div> -->
+
             </section>
         </div>
-
-        <!-- Sidebar -->
-        <!-- Include your sidebar from the main page here -->
-
-        <!-- Footer -->
         <footer id="footer">
-            <!-- Your footer content -->
         </footer>
 
     </div>
 
-    <!-- Scripts -->
-    <!-- Include the same scripts as your main page to ensure functionality -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/browser.min.js"></script>
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+
+    <script>
+        // This function updates the displayed mileage value as the slider is moved
+        document.getElementById('mileage').addEventListener('input', function() {
+            document.getElementById('mileageDisplay').textContent = this.value + ' miles';
+        });
+
+        // This function ensures that the "From" price is not greater than the "To" price
+        function validatePrice() {
+            var fromPrice = document.getElementById('price-from');
+            var toPrice = document.getElementById('price-to');
+            if (parseInt(fromPrice.value) > parseInt(toPrice.value)) {
+                fromPrice.value = toPrice.value;
+            }
+        }
+
+        // Add event listeners to the price inputs
+        document.getElementById('price-from').addEventListener('input', validatePrice);
+        document.getElementById('price-to').addEventListener('input', validatePrice);
+    </script>
 
 </body>
 </html>
